@@ -5,8 +5,8 @@ venv:
 	$(PYTHON) -m venv .
 
 $(SAM): bin
-	source $</activate && pip install sam
+	source $</activate && pip install -r requirements.txt
 
-bin: venv
-
+bin: 
+	$(MAKE) venv
 
