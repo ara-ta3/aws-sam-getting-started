@@ -1,0 +1,10 @@
+# global
+
+.swp
+
+# python venv
+
+bin
+lib
+include
+man
