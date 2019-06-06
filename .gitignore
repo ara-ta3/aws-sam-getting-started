@@ -8,3 +8,7 @@ bin
 lib
 include
 man
+
+# nodejs
+
+node_modules
