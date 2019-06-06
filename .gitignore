@@ -1,6 +1,8 @@
 # global
 
 .swp
+dist/
+!dist/.gitkeep
 
 # python venv
 

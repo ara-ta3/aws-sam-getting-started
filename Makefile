@@ -1,6 +1,11 @@
 PYTHON=python3
 SAM=bin/sam
 YARN=yarn
+AWS=aws
+LambdaFunctionName=hello-lambda
+LambdaIAMRoleArn=
+
+
 
 install:
 	$(YARN) install
@@ -24,3 +29,20 @@ $(SAM): bin
 bin: 
 	$(MAKE) venv
 
+zip:
+	zip -r dist/app.zip src/ node_modules
+
+dist/app.zip:
+	$(MAKE) zip
+
+lambda/create: dist/app.zip
+	$(AWS) lambda create-function \
+		--function-name $(LambdaFunctionName) \
+		--runtime nodejs10.x \
+		--role $(LambdaIAMRoleArn) \
+		--handler src/app.lambdaHandler \
+		--zip-file fileb://./$<
+
+lambda/update: dist/app.zip
+	$(AWS) lambda update-function-code --function-name $(LambdaFunctionName) \
+		--zip-file fileb://./$<
