@@ -30,7 +30,7 @@ $(AWS): bin
 bin: 
 	$(MAKE) venv
 
-zip:
+zip: install
 	zip -r dist/app.zip src/ node_modules
 
 dist/app.zip:
