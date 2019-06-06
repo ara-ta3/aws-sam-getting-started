@@ -1,11 +1,9 @@
 PYTHON=python3
 SAM=bin/sam
 YARN=yarn
-AWS=aws
+AWS=bin/aws
 LambdaFunctionName=hello-lambda
 LambdaIAMRoleArn=
-
-
 
 install:
 	$(YARN) install
@@ -24,6 +22,9 @@ venv:
 	$(PYTHON) -m venv .
 
 $(SAM): bin
+	source $</activate && pip install -r requirements.txt
+
+$(AWS): bin
 	source $</activate && pip install -r requirements.txt
 
 bin: 
